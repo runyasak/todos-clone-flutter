@@ -4,7 +4,7 @@ import { useFela } from 'react-fela';
 
 export interface TitleBarProps {
   actionName?: string;
-  action?: () => {};
+  action?: () => void;
 }
 
 const TitleBar: React.FC<TitleBarProps> = ({ actionName, action }) => {

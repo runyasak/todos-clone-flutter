@@ -1,12 +1,16 @@
-import React from 'react';
-import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import purple from '@material-ui/core/colors/purple';
-import PanoramaFishEyeIcon from '@material-ui/icons/PanoramaFishEye';
+import React, { useState } from 'react';
 import { useFela } from 'react-fela';
-import TitleBar from '../components/TitleBar';
+import TodoListScreen from '../components/TodoListScreen';
 
 const TodoPage: React.FC = () => {
   const { css } = useFela();
+  const [isNewTodoMode, setIsNewTodoMode] = useState(false);
+
+  const handleClickNew = () => setIsNewTodoMode(true);
+
+  const renderScreenMode = isNewTodoMode
+    ? <h1>Hello new todo!</h1>
+    : <TodoListScreen onClickNew={handleClickNew} />;
 
   return <div className={css({ backgroundColor: '#B296AC' })}>
     <div className={css({
@@ -30,21 +34,7 @@ const TodoPage: React.FC = () => {
         marginTop: '-32px',
         height: 'calc(100vh - 433px)',
       })}>
-        <TitleBar actionName="new"></TitleBar>
-
-        <List>
-          <ListItem alignItems="flex-start">
-            <ListItemIcon>
-              <PanoramaFishEyeIcon
-                className={css({ color: purple[200], cursor: 'pointer' })}
-              />
-            </ListItemIcon>
-            <ListItemText
-              primary="อ่านหนังสือหลังตื่นนอน"
-              secondary="อ่านเล่ม ทำยังไงให้สาธิดีขึ้น"
-            />
-          </ListItem>
-        </List>
+        {renderScreenMode}
       </div>
     </div>
   </div>;
