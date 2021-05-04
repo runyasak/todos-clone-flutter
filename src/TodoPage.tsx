@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from '@material-ui/core';
 import { useFela } from 'react-fela';
 
 const TodoPage: React.FC = () => {
@@ -26,7 +27,16 @@ const TodoPage: React.FC = () => {
         marginTop: '-32px',
         height: 'calc(100vh - 433px)',
       })}>
-        <b className={css({ fontSize: '24px' })}>Todo</b>
+        <div className={css({
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        })}>
+          <b className={css({ fontSize: '24px' })}>Todo</b>
+          <Button>
+            <u className={css({ fontSize: '16px', textTransform: 'initial' })}>new</u>
+          </Button>
+        </div>
       </div>
     </div>
   </div>;
