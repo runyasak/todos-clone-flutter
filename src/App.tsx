@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRenderer } from 'fela'
 import { RendererProvider } from 'react-fela'
-import TodoPage from './TodoPage';
+import TodoPage from './pages/Todo.page';
 
 const renderer = createRenderer()
 
