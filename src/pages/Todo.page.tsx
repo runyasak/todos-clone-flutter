@@ -1,8 +1,9 @@
 import React from 'react';
-import { Button, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import purple from '@material-ui/core/colors/purple';
 import PanoramaFishEyeIcon from '@material-ui/icons/PanoramaFishEye';
 import { useFela } from 'react-fela';
+import TitleBar from '../components/TitleBar';
 
 const TodoPage: React.FC = () => {
   const { css } = useFela();
@@ -29,19 +30,10 @@ const TodoPage: React.FC = () => {
         marginTop: '-32px',
         height: 'calc(100vh - 433px)',
       })}>
-        <div className={css({
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        })}>
-          <b className={css({ fontSize: '24px' })}>Todo</b>
-          <Button>
-            <u className={css({ fontSize: '16px', textTransform: 'initial' })}>new</u>
-          </Button>
-        </div>
+        <TitleBar actionName="new"></TitleBar>
 
         <List>
-          <ListItem>
+          <ListItem alignItems="flex-start">
             <ListItemIcon>
               <PanoramaFishEyeIcon
                 className={css({ color: purple[200], cursor: 'pointer' })}
