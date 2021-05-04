@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ChevronLeft } from '@material-ui/icons';
 import { useFela } from 'react-fela';
 import TodoListScreen from '../components/TodoListScreen';
+import TodoNewScreen from '../components/TodoNewScreen';
 
 const TodoPage: React.FC = () => {
   const { css } = useFela();
@@ -23,7 +24,7 @@ const TodoPage: React.FC = () => {
   />;
 
   const renderScreenMode = isNewTodoMode
-    ? <h1>Hello new todo!</h1>
+    ? <TodoNewScreen />
     : <TodoListScreen onClickNew={handleClickNew} />;
 
   return <div className={css({ backgroundColor: '#B296AC' })}>

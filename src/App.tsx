@@ -5,7 +5,7 @@ import TodoPage from './pages/Todo.page';
 
 const renderer = createRenderer()
 
-const App = () => (
+const App: React.FC = () => (
   <RendererProvider renderer={renderer}>
     <TodoPage></TodoPage>
   </RendererProvider>
