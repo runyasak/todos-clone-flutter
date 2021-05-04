@@ -1,5 +1,7 @@
 import React from 'react';
-import { Button } from '@material-ui/core';
+import { Button, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import purple from '@material-ui/core/colors/purple';
+import PanoramaFishEyeIcon from '@material-ui/icons/PanoramaFishEye';
 import { useFela } from 'react-fela';
 
 const TodoPage: React.FC = () => {
@@ -37,6 +39,20 @@ const TodoPage: React.FC = () => {
             <u className={css({ fontSize: '16px', textTransform: 'initial' })}>new</u>
           </Button>
         </div>
+
+        <List>
+          <ListItem>
+            <ListItemIcon>
+              <PanoramaFishEyeIcon
+                className={css({ color: purple[200], cursor: 'pointer' })}
+              />
+            </ListItemIcon>
+            <ListItemText
+              primary="อ่านหนังสือหลังตื่นนอน"
+              secondary="อ่านเล่ม ทำยังไงให้สาธิดีขึ้น"
+            />
+          </ListItem>
+        </List>
       </div>
     </div>
   </div>;
