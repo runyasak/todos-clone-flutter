@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ChevronLeft } from '@material-ui/icons';
 import { useFela } from 'react-fela';
 import TodoListScreen from '../components/TodoListScreen';
 
@@ -8,6 +9,19 @@ const TodoPage: React.FC = () => {
 
   const handleClickNew = () => setIsNewTodoMode(true);
 
+  const handleClickBack = () => setIsNewTodoMode(false);
+
+  const renderBackButton = isNewTodoMode && <ChevronLeft
+    className={css({
+      color: 'white',
+      position: 'absolute',
+      top: '38px',
+      left: '16px',
+      cursor: 'pointer',
+    })}
+    onClick={handleClickBack}
+  />;
+
   const renderScreenMode = isNewTodoMode
     ? <h1>Hello new todo!</h1>
     : <TodoListScreen onClickNew={handleClickNew} />;
@@ -16,6 +30,7 @@ const TodoPage: React.FC = () => {
     <div className={css({
       maxWidth: '414px',
       margin: 'auto',
+      position: 'relative',
     })}>
       <img
         className={css({
@@ -25,6 +40,9 @@ const TodoPage: React.FC = () => {
         src="/cover.png"
         alt="Cover Todo"
       />
+
+      {renderBackButton}
+
       <div className={css({
         borderTopLeftRadius: '32px',
         borderTopRightRadius: '32px',
@@ -32,7 +50,7 @@ const TodoPage: React.FC = () => {
         backgroundColor: 'white',
         position: 'relative',
         marginTop: '-32px',
-        height: 'calc(100vh - 433px)',
+        height: 'calc(100vh - 436px)',
       })}>
         {renderScreenMode}
       </div>
