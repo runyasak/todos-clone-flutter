@@ -4,7 +4,7 @@ import { useFela } from 'react-fela';
 import TodoListScreen from '../components/TodoListScreen';
 import TodoNewScreen from '../components/TodoNewScreen';
 import type { Todo } from '../models/Todo';
-import { completeTodo, getTodos } from '../services/MockTodo';
+import { addTodo, completeTodo, getTodos } from '../services/MockTodo';
 
 const TodoPage: React.FC = () => {
   const { css } = useFela();
@@ -20,6 +20,12 @@ const TodoPage: React.FC = () => {
     setTodos(() => [...getTodos()]);
   }
 
+  const handleClickSave = (value: Todo) => {
+    addTodo(value);
+    setIsNewTodoMode(false);
+    setTodos(() => [...getTodos()]);
+  };
+
   const renderBackButton = isNewTodoMode && <ChevronLeft
     className={css({
       color: 'white',
@@ -32,7 +38,9 @@ const TodoPage: React.FC = () => {
   />;
 
   const renderScreenMode = isNewTodoMode
-    ? <TodoNewScreen />
+    ? <TodoNewScreen
+        onClickSave={handleClickSave}
+      />
     : <TodoListScreen
         todos={todos}
         onClickNew={handleClickNew}
