@@ -3,14 +3,22 @@ import { ChevronLeft } from '@material-ui/icons';
 import { useFela } from 'react-fela';
 import TodoListScreen from '../components/TodoListScreen';
 import TodoNewScreen from '../components/TodoNewScreen';
+import type { Todo } from '../models/Todo';
+import { completeTodo, getTodos } from '../services/MockTodo';
 
 const TodoPage: React.FC = () => {
   const { css } = useFela();
   const [isNewTodoMode, setIsNewTodoMode] = useState(false);
+  const [todos, setTodos] = useState<Todo[]>(getTodos());
 
   const handleClickNew = () => setIsNewTodoMode(true);
 
   const handleClickBack = () => setIsNewTodoMode(false);
+
+  const handleCompleteTodo = (index: number) => {
+    completeTodo(index);
+    setTodos(() => [...getTodos()]);
+  }
 
   const renderBackButton = isNewTodoMode && <ChevronLeft
     className={css({
@@ -25,7 +33,11 @@ const TodoPage: React.FC = () => {
 
   const renderScreenMode = isNewTodoMode
     ? <TodoNewScreen />
-    : <TodoListScreen onClickNew={handleClickNew} />;
+    : <TodoListScreen
+        todos={todos}
+        onClickNew={handleClickNew}
+        onClickComplete={handleCompleteTodo}
+      />;
 
   return <div className={css({ backgroundColor: '#B296AC' })}>
     <div className={css({

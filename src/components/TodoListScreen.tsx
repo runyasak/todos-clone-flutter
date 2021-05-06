@@ -9,27 +9,31 @@ import type { Todo } from '../models/Todo';
 
 export interface TodoListScreenProps {
   todos?: Todo[],
+  onClickComplete?: (index: number) => void;
   onClickNew?: () => void;
 }
 
 const TodoListScreen: React.FC<TodoListScreenProps> = ({
   todos = [],
-  onClickNew,
+  onClickComplete = () => {},
+  onClickNew = () => {},
 }) => {
   const { css } = useFela();
 
-  const renderCompleteIcon = (complete: boolean) => complete
+  const renderCompleteIcon = (complete: boolean, index: number) => complete
     ? <CheckCircleOutlineRounded
         className={css({
           color: green[500],
           cursor: 'pointer'
         })}
+        onClick={() => onClickComplete(index)}
       />
     : <PanoramaFishEyeIcon
         className={css({
           color: purple[200],
           cursor: 'pointer'
         })}
+        onClick={() => onClickComplete(index)}
       />
 
   const renderListItem = todos.map((todo, index) => (
@@ -38,7 +42,7 @@ const TodoListScreen: React.FC<TodoListScreenProps> = ({
       alignItems="flex-start"
     >
       <ListItemIcon>
-        {renderCompleteIcon}
+        {renderCompleteIcon(todo.complete, index)}
       </ListItemIcon>
       <ListItemText
         primary={todo.topic}
